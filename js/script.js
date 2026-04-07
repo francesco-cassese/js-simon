@@ -60,11 +60,24 @@ bottoneInizio.addEventListener('click', () => {
 /* --- GESTIONE DELLA VERIFICA FINALE (TASTO CONFERMA) --- */
 
 formRisposte.addEventListener('submit', (event) => {
+
     // BLOCCO IL REFRESH: Evito che la pagina si ricarichi (comportamento standard dei form)
     event.preventDefault();
 
     // CALCOLO RISULTATI: Chiedo alla funzione di confrontare i numeri inseriti con quelli segreti
     const indovinati = confrontaSequenze();
+
+    // --- CONTROLLO ERRORI CON ALERT DIVERTENTI ---
+
+    if (risultato === -1) {
+        alert("🚨 EHI! Hai lasciato delle caselle vuote. La mia memoria è d'acciaio, ma la tua pigrizia è leggendaria! Riampile tutte! ✍️");
+        return; // Interrompo tutto, non mostro il verdetto
+    }
+
+    if (risultato === -2) {
+        alert("🧐 NUMERI ALIENI? Ti ho chiesto numeri tra 1 e 50. Quello che hai scritto viene da un'altra galassia... riprova con numeri terrestri! 👽");
+        return; // Interrompo tutto
+    }
 
     // COMUNICAZIONE ESITO: Decido che messaggio mostrare in base a quanti numeri sono stati trovati
     if (indovinati.length > 0) {

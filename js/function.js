@@ -52,49 +52,49 @@ const generaSequenzaNumerica = (quantita) => {
     return numeriUnici;                                // Consegno l'array completo con tutti numeri diversi
 }
 
-/*
-   Prende quello che l'utente ha scritto nelle caselle e lo pulisce
- */
+// --- FUNZIONE RECUPERO DATI INPUT --- 
+
 const estraiNumeriUtente = () => {
+    let numeriInseriti = [];
 
-    let numeriInseriti = [];                           // Contenitore per i numeri che l'utente crede di ricordare
-
-    // Controllo tutte le caselle di input che abbiamo nel Main
     for (let i = 0; i < campiInput.length; i++) {
-
-        // Trasformo il testo della casella in un vero numero
         let valore = parseInt(campiInput[i].value);
 
-        // Salvo il valore solo se è un numero vero (scarto caselle vuote o lettere)
-        if (!isNaN(valore)) {
-            numeriInseriti.push(valore);
+        // Se l'utente lascia una casella vuota o scrive lettere
+        if (isNaN(valore)) {
+            return -1;
         }
+
+        // Se l'utente scrive numeri assurdi (es. negativi o oltre 50)
+        if (valore < 1 || valore > 50) {
+            return -2;
+        }
+
+        numeriInseriti.push(valore);
     }
 
-    return numeriInseriti;                             // Restituisco la lista dei numeri pulita e pronta al confronto
+    return numeriInseriti;
 }
 
-/*
-   Verifica quanti numeri l'utente ha indovinato davvero
- */
+// --- FUNZIONE LOGICA DI CONFRONTO --- 
+
 const confrontaSequenze = () => {
-
-    let numeriVincenti = [];                           // Qui salveremo i "trofei", ovvero i numeri indovinati
-
-    // Prendo i numeri puliti chiamando la funzione precedente
+    let numeriVincenti = [];
     let datiUtente = estraiNumeriUtente();
 
-    // Guardo uno per uno i numeri inseriti dall'utente
+    // Se estraiNumeriUtente ha restituito un codice di errore, lo passo al Main
+    if (datiUtente === -1 || datiUtente === -2) {
+        return datiUtente;
+    }
+
     for (let i = 0; i < datiUtente.length; i++) {
+        let numeroCorrente = datiUtente[i];
 
-        let numeroCorrente = datiUtente[i];            // Prendo il numero che l'utente ha scritto in questa casella
-
-        //Controllo se il numero è tra quelli giusti E se non l'ho già contato
+        // Controllo se il numero è giusto e non duplicato
         if (sequenzaCorretta.includes(numeroCorrente) && !numeriVincenti.includes(numeroCorrente)) {
-
-            numeriVincenti.push(numeroCorrente);       // Segno il numero come "Indovinato"
+            numeriVincenti.push(numeroCorrente);
         }
     }
 
-    return numeriVincenti;                             // Restituisco la lista finale dei successi per dirlo all'utente
+    return numeriVincenti;
 }
