@@ -23,3 +23,25 @@ const gestioneContoAllaRovescia = (secondi, comunicaStato) => {
 
 
 }
+
+/* --- FUNZIONE NUMERI RANDOM --- */
+
+const generaSequenzaNumerica = (quantita) => {
+
+    let numeriUnici = [];                                  // Array per i numeri finali
+    let numeriTrovati = 0;                                 // Variabile di stato per il controllo del ciclo
+
+    // Ciclo finché non abbiamo raggiunto la quantità desiderata
+    while (numeriTrovati < quantita) {
+
+        let numeroCasuale = Math.floor(Math.random() * 50) + 1;
+
+        // controllo se il numero è già presente nell'array
+        if (!numeriUnici.includes(numeroCasuale)) {
+            numeriUnici.push(numeroCasuale);               // Lo aggiungo solo se è nuovo
+            numeriTrovati++;                               // Incremento lo stato solo in caso di successo
+        }
+    }
+
+    return numeriUnici;                                    // Ritorno l'array di numeri tutti diversi
+}
