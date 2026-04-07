@@ -152,7 +152,7 @@ const confrontaSequenze = () => {
 
 // --- FUNZIONE GENERATRICE DI RESET ---
 
-const creaResetGioco = (inputs, msg, count, lista, form, benvenuto, btn) => {
+const creaResetGioco = (inputs, msg, count, lista, form, benvenuto, btnRiprova, btnConfirm) => {
 
     // Questa è la funzione vera e propria che verrà eseguita al click
     return function () {
@@ -171,10 +171,10 @@ const creaResetGioco = (inputs, msg, count, lista, form, benvenuto, btn) => {
         // 3. Visibilità
         lista.classList.remove('d-none');
         form.classList.add('d-none');
-        btn.classList.add('d-none');
+        btnRiprova.classList.add('d-none');
         benvenuto.classList.remove('d-none');
 
-        btnConfirm.disabled = false;
+        btnConfirm.disabled = false; // Resetto variabile disabled
 
         console.log("Reset generale eseguito con successo! 🔄");
     };
