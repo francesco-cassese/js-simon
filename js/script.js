@@ -61,32 +61,43 @@ bottoneInizio.addEventListener('click', () => {
 
 formRisposte.addEventListener('submit', (event) => {
 
-    // BLOCCO IL REFRESH: Evito che la pagina si ricarichi (comportamento standard dei form)
+    // BLOCO IL REFRESH: Evito che la pagina si ricarichi
     event.preventDefault();
 
-    // CALCOLO RISULTATI: Chiedo alla funzione di confrontare i numeri inseriti con quelli segreti
+    // Tolgo il rosso (is-invalid) da tutti i campi prima di fare il nuovo controllo
+    campiInput.forEach(input => input.classList.remove('is-invalid'));
+    areaMessaggio.innerHTML = "";
+
+    // CALCOLO RISULTATI: Chiedo alla logica di confrontare i numeri (mi darà un array o un errore < 0)
     const indovinati = confrontaSequenze();
 
-    // --- CONTROLLO ERRORI ---
+    // --- GESTIONE ERRORI ---
 
-    if (risultato === -1) {
-        alert("🚨 EHI! Hai lasciato delle caselle vuote. La mia memoria è d'acciaio, ma la tua pigrizia è leggendaria! Riampile tutte! ✍️");
-        return; // Interrompo tutto, non mostro il verdetto
+    if (indovinati < 0) {
+
+        // Messaggio specifico in base al codice errore ricevuto
+        if (indovinati === -1) alert("🚨 Caselle vuote! Riampile tutte. ✍️");
+        if (indovinati === -2) alert("🧐 Numeri fuori range (1-50)! 👽");
+        if (indovinati === -3) alert("👯 Doppioni! Ogni numero deve essere unico. 🃏");
+
+        // Chiamo la funzione che si occupa di ri-leggere i campi e colorarli
+        evidenziaCampiErrati(indovinati, campiInput);
+        return;
     }
 
-    if (risultato === -2) {
-        alert("🧐 NUMERI ALIENI? Ti ho chiesto numeri tra 1 e 50. Quello che hai scritto viene da un'altra galassia... riprova con numeri terrestri! 👽");
-        return; // Interrompo tutto
-    }
+    // --- SE TUTTO È OK MOSTRO IL RISULTATO ---
 
-    // COMUNICAZIONE ESITO: Decido che messaggio mostrare in base a quanti numeri sono stati trovati
     if (indovinati.length > 0) {
-        // CASO VITTORIA (Almeno uno indovinato): Coloro il testo di verde e mostro i numeri presi
+        // CASO VITTORIA: Coloro il testo di verde e mostro i numeri presi
         areaMessaggio.className = "text-success fw-bold mt-3 text-center";
-        areaMessaggio.innerHTML = `Ottimo! Hai indovinato ${indovinati.length} numeri: ${indovinati.join(' - ')}`;
+        areaMessaggio.innerHTML = `BOOM! Hai indovinato ${indovinati.length} numeri: [ ${indovinati.join(' - ')} ] 🏆`;
+
+        if (indovinati.length === quantitaNumeri) {
+            alert("🤯 PAZZESCO! Li hai presi tutti! Sei un fenomeno!");
+        }
     } else {
-        // CASO SCONFITTA (Zero indovinati): Coloro il testo di rosso per segnalare l'errore
+        // CASO SCONFITTA: Coloro il testo di rosso
         areaMessaggio.className = "text-danger fw-bold mt-3 text-center";
-        areaMessaggio.innerHTML = "Non hai indovinato nessun numero! Ritenta la prossima volta.";
+        areaMessaggio.innerHTML = "Zero spaccato! 🧊 La tua memoria è come un colino... riprova!";
     }
 });

@@ -72,6 +72,28 @@ const validaSingoloNumero = (valore, listaEsistente) => {
     return 1;                                          // Restituisco 1 se il numero ha superato tutti i controlli
 }
 
+// --- FUNZIONE GESTIONE VISIVA ERRORI ---
+
+const evidenziaCampiErrati = (codiceErrore, listaInput) => {
+
+    let memoriaLocale = []; // Serve per permettere alla validazione di trovare i doppioni
+
+    listaInput.forEach(input => {
+        let valore = parseInt(input.value);
+
+        // Chiedo alla validazione se questo campo specifico ha l'errore che stiamo cercando
+        let esito = validaSingoloNumero(valore, memoriaLocale);
+
+        // Se l'errore del campo è lo stesso che ha bloccato il gioco, coloro di rosso
+        if (esito === codiceErrore) {
+            input.classList.add('is-invalid');
+        }
+
+        // Nutro la memoria per il prossimo giro del ciclo
+        memoriaLocale.push(valore);
+    });
+}
+
 // --- FUNZIONE RECUPERO DATI INPUT --- 
 
 const estraiNumeriUtente = () => {
