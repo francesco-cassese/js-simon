@@ -29,9 +29,9 @@ const gestioneContoAllaRovescia = (secondi, comunicaStato) => {
     }, 1000);                                          // Dico al computer di ripetere tutto ogni 1000ms (1 secondo)
 }
 
-/**
- * Crea la lista di 5 numeri segreti senza mai far uscire doppioni
- */
+/*
+  Crea la lista di 5 numeri segreti senza mai far uscire doppioni
+*/
 const generaSequenzaNumerica = (quantita) => {
 
     let numeriUnici = [];                              // Il contenitore dove metteremo i numeri "buoni"
@@ -52,8 +52,8 @@ const generaSequenzaNumerica = (quantita) => {
     return numeriUnici;                                // Consegno l'array completo con tutti numeri diversi
 }
 
-/**
- * Prende quello che l'utente ha scritto nelle caselle e lo pulisce
+/*
+   Prende quello che l'utente ha scritto nelle caselle e lo pulisce
  */
 const estraiNumeriUtente = () => {
 
@@ -74,8 +74,8 @@ const estraiNumeriUtente = () => {
     return numeriInseriti;                             // Restituisco la lista dei numeri pulita e pronta al confronto
 }
 
-/**
- * Verifica quanti numeri l'utente ha indovinato davvero
+/*
+   Verifica quanti numeri l'utente ha indovinato davvero
  */
 const confrontaSequenze = () => {
 
