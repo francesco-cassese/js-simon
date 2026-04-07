@@ -91,7 +91,7 @@ formRisposte.addEventListener('submit', (event) => {
     if (indovinati.length > 0) {
         // CASO VITTORIA: Coloro il testo di verde e mostro i numeri presi
         areaMessaggio.className = "text-success fw-bold mt-3 text-center";
-        areaMessaggio.innerHTML = `BOOM! Hai indovinato ${indovinati.length} numeri: [ ${indovinati.join(' - ')} ] 🏆`;
+        areaMessaggio.innerHTML = `BOOM! Hai indovinato ${indovinati.length} numero/i: [ ${indovinati.join(' - ')} ] 🏆`;
 
         if (indovinati.length === quantitaNumeri) {
             alert("🤯 PAZZESCO! Li hai presi tutti! Sei un fenomeno!");
