@@ -32,7 +32,6 @@
 .wrapper {
 	background-color: var(--bg-wrapper);
 	color: #1e293b;
-	/* Testo grigio scuro */
 }
 
 /* ========================================
@@ -44,7 +43,6 @@
 	font-weight: 800;
 	font-size: 6rem;
 	color: var(--color-countdown) !important;
-	/* Ombra più delicata su sfondo chiaro */
 	text-shadow: 2px 2px 10px rgba(2, 132, 199, 0.1);
 }
 
