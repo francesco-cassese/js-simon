@@ -8,6 +8,7 @@ const numeriDaIndovinare = document.querySelector('#numbers-list');
 const istruzioni = document.querySelector('#instructions');
 const formRisposte = document.querySelector('#answers-form');
 const campiInput = document.querySelectorAll('#input-group input');
+const areaMessaggio = document.querySelector('#message');
 
 
 /* --- VARIABILI --- */
@@ -25,7 +26,7 @@ bottoneInizio.addEventListener('click', () => {
     istruzioni.classList.remove('d-none');
 
     //Richiamo gli strumenti
-    const sequenzaCorretta = generaSequenzaNumerica(quantitaNumeri);
+    sequenzaCorretta = generaSequenzaNumerica(quantitaNumeri);
     numeriDaIndovinare.innerHTML = `${sequenzaCorretta.join(' - ')}`;
 
     //Esecuzione Timer
@@ -48,4 +49,21 @@ bottoneInizio.addEventListener('click', () => {
             console.log("Sequenza corretta:", sequenzaCorretta);
         }
     });
+});
+
+// 2. Verifica Risultati
+formRisposte.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Chiamo la funzione che mi confronta i numeri generati e i numeri del giocatore
+    const indovinati = confrontaSequenze();
+
+    // Gestione Messaggi nel Main
+    if (indovinati.length > 0) {
+        areaMessaggio.className = "text-success fw-bold mt-3";
+        areaMessaggio.innerHTML = `Hai indovinato ${indovinati.length} numeri: ${indovinati.join(' - ')}`;
+    } else {
+        areaMessaggio.className = "text-danger fw-bold mt-3";
+        areaMessaggio.innerHTML = "Non hai indovinato nessun numero!";
+    }
 });
