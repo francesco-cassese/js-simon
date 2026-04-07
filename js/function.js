@@ -174,6 +174,8 @@ const creaResetGioco = (inputs, msg, count, lista, form, benvenuto, btn) => {
         btn.classList.add('d-none');
         benvenuto.classList.remove('d-none');
 
+        btnConfirm.disabled = false;
+
         console.log("Reset generale eseguito con successo! 🔄");
     };
 };

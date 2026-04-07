@@ -14,6 +14,7 @@ const formRisposte = document.querySelector('#answers-form');        // Il conte
 const campiInput = document.querySelectorAll('#input-group input');  // Le 5 caselle da riempire
 const areaMessaggio = document.querySelector('#message');            // Il paragrafo per il verdetto finale
 const bottoneRiprova = document.querySelector('#btn-restart')        // Bottone restart
+const bottoneConferma = document.querySelector('.btn-confirm');      // Bottone conferma
 
 
 /* --- VARIABILI DI CONFIGURAZIONE --- */
@@ -86,7 +87,9 @@ formRisposte.addEventListener('submit', (event) => {
         return;
     }
 
-    // --- SE TUTTO È OK MOSTRO IL RISULTATO ---
+    // --- SE TUTTO È OK MOSTRO IL RISULTATO E DISABILITO BOTTONE ---
+
+    bottoneConferma.disabled = true;
 
     if (indovinati.length > 0) {
         // CASO VITTORIA: Coloro il testo di verde e mostro i numeri presi
@@ -115,7 +118,8 @@ const resetPersonalizzato = creaResetGioco(
     numeriDaIndovinare,
     formRisposte,
     paginaDiBenvenuto,
-    bottoneRiprova
+    bottoneRiprova,
+    bottoneConferma
 );
 
 /* --- LOGICA DI RESTART --- */
