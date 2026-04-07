@@ -1,93 +1,100 @@
 'use strict';
 
-/* --- FUNZIONE CONTO ALLA ROVESCIA --- */
+/* ================================================================================
+     FUNZIONI - SIMON SAYS
+================================================================================ */
+
+/**
+ * Gestisce il tempo che scorre e avvisa il Main ogni secondo
+ */
 const gestioneContoAllaRovescia = (secondi, comunicaStato) => {
 
-    let tempoCorrente = secondi;                           // Variabile di lavoro per il calcolo
-    let timerAttivo = true;                                // Flag per il controllo del flusso
+    let tempoCorrente = secondi;                       // Variabile di appoggio per non "rompere" il valore originale
+    let timerAttivo = true;                            // Interruttore per dire al ciclo se può continuare a girare
 
-    comunicaStato(1, tempoCorrente);                       // Qui gli faccio stampare il numero da dovbe inizia il timer
+    comunicaStato(1, tempoCorrente);                   // Dico subito al Main di stampare il numero di partenza
 
     let identificatoreTimer = setInterval(function () {
 
+        // Controllo se c'è ancora tempo e se l'interruttore è su ON
         if (tempoCorrente > 0 && timerAttivo) {
-            tempoCorrente--;                               // Decremento il valore
-            return comunicaStato(1, tempoCorrente);        // CODICE 1: Il timer è attivo (invio anche il dato)
+            tempoCorrente--;                           // Tolgo un secondo alla volta
+            return comunicaStato(1, tempoCorrente);    // Restituisco "1" (ATTIVO) e il tempo che resta
         } else {
-            clearInterval(identificatoreTimer);            // Interrompo l'intervallo
-            timerAttivo = false;                           // Cambio lo stato della flag per uscire
-            return comunicaStato(0);                       // CODICE 0: Il tempo è scaduto
+            clearInterval(identificatoreTimer);        // Stoppo il timer
+            timerAttivo = false;                       // Metto l'interruttore su OFF 
+            return comunicaStato(0);                   // Restituisco "0" (FINITO) per far apparire gli input
         }
 
-    }, 1000);                                              // Frequenza di un secondo
-
-
+    }, 1000);                                          // Dico al computer di ripetere tutto ogni 1000ms (1 secondo)
 }
 
-/* --- FUNZIONE NUMERI RANDOM --- */
-
+/**
+ * Crea la lista di 5 numeri segreti senza mai far uscire doppioni
+ */
 const generaSequenzaNumerica = (quantita) => {
 
-    let numeriUnici = [];                                  // Array per i numeri finali
-    let numeriTrovati = 0;                                 // Variabile di stato per il controllo del ciclo
+    let numeriUnici = [];                              // Il contenitore dove metteremo i numeri "buoni"
+    let numeriTrovati = 0;                             // Contatore che mi dice a che punto siamo con la generazione
 
-    // Ciclo finché non abbiamo raggiunto la quantità desiderata
+    // Ciclo finché il contenitore non è pieno
     while (numeriTrovati < quantita) {
 
-        let numeroCasuale = Math.floor(Math.random() * 50) + 1;
+        let numeroCasuale = Math.floor(Math.random() * 50) + 1; // Genero un numero tra 1 e 50
 
-        // controllo se il numero è già presente nell'array
+        // Controllo se il numero appena uscito è già nel contenitore
         if (!numeriUnici.includes(numeroCasuale)) {
-            numeriUnici.push(numeroCasuale);               // Lo aggiungo solo se è nuovo
-            numeriTrovati++;                               // Incremento lo stato solo in caso di successo
+            numeriUnici.push(numeroCasuale);           // Lo aggiungo solo se è un numero "nuovo"
+            numeriTrovati++;                           // Segno che ho trovato un numero valido in più
         }
     }
 
-    return numeriUnici;                                    // Ritorno l'array di numeri tutti diversi
+    return numeriUnici;                                // Consegno l'array completo con tutti numeri diversi
 }
 
-/* --- FUNZIONE RECUPERO DATI INPUT --- */
-
+/**
+ * Prende quello che l'utente ha scritto nelle caselle e lo pulisce
+ */
 const estraiNumeriUtente = () => {
 
-    let numeriInseriti = [];                               // Array per memorizzare i valori estratti dagli input
+    let numeriInseriti = [];                           // Contenitore per i numeri che l'utente crede di ricordare
 
-    // 1. Ciclo i campiInput (globali) per prelevare i dati
+    // Controllo tutte le caselle di input che abbiamo nel Main
     for (let i = 0; i < campiInput.length; i++) {
 
-        // Trasformo il valore testuale in numero intero
+        // Trasformo il testo della casella in un vero numero
         let valore = parseInt(campiInput[i].value);
 
-        // Pusho nell'array solo se il dato è un numero valido
+        // Salvo il valore solo se è un numero vero (scarto caselle vuote o lettere)
         if (!isNaN(valore)) {
             numeriInseriti.push(valore);
         }
     }
 
-    return numeriInseriti;                                 // Ritorno l'array pulito al chiamante
+    return numeriInseriti;                             // Restituisco la lista dei numeri pulita e pronta al confronto
 }
 
-
-/* --- FUNZIONE LOGICA DI CONFRONTO --- */
-
+/**
+ * Verifica quanti numeri l'utente ha indovinato davvero
+ */
 const confrontaSequenze = () => {
 
-    let numeriVincenti = [];                               // Array per i numeri indovinati correttamente
+    let numeriVincenti = [];                           // Qui salveremo i "trofei", ovvero i numeri indovinati
 
-    // Richiamo la funzione di estrazione per avere i dati pronti
+    // Prendo i numeri puliti chiamando la funzione precedente
     let datiUtente = estraiNumeriUtente();
 
-    // Confronto con la sequenza globale (senza considerare l'ordine)
+    // Guardo uno per uno i numeri inseriti dall'utente
     for (let i = 0; i < datiUtente.length; i++) {
 
-        let numeroCorrente = datiUtente[i];                // Variabile di appoggio per il numero da controllare
+        let numeroCorrente = datiUtente[i];            // Prendo il numero che l'utente ha scritto in questa casella
 
-        // Controllo se presente nell'originale E Aggiungi questo numero all'elenco dei punti fatti SOLO SE non l'hai già inserito prima.
+        //Controllo se il numero è tra quelli giusti E se non l'ho già contato
         if (sequenzaCorretta.includes(numeroCorrente) && !numeriVincenti.includes(numeroCorrente)) {
 
-            numeriVincenti.push(numeroCorrente);           // Inserisco il numero nei risultati positivi
+            numeriVincenti.push(numeroCorrente);       // Segno il numero come "Indovinato"
         }
     }
 
-    return numeriVincenti;                                 // Ritorno l'array dei successi per la stampa nel Main
+    return numeriVincenti;                             // Restituisco la lista finale dei successi per dirlo all'utente
 }
