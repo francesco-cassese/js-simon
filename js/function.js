@@ -89,7 +89,7 @@ const evidenziaCampiErrati = (codiceErrore, listaInput) => {
             input.classList.add('is-invalid');
         }
 
-        // Nutro la memoria per il prossimo giro del ciclo
+        // Aggiungo il numero alla memoriaLocale per il prossimo giro del ciclo
         memoriaLocale.push(valore);
     });
 }
