@@ -12,39 +12,44 @@
     integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=='
     crossorigin='anonymous' />
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <!-- Collegamento CSS -->
+  <link rel="stylesheet" href="./css/style.css" type="text/css" />
 </head>
 
 <body>
-  <div class="d-flex vh-100 w-50 m-auto d-flex justify-content-center align-items-center flex-column">
+  <div class="d-flex vh-100 justify-content-center align-items-center flex-column text-center">
 
-    <!-- Schermata iniziale -->
-    <div id="welcome-screen" class="text-center">
+    <!-- Schermata Benvenuto -->
+    <div id="welcome-screen">
       <h1 class="display-3 fw-bold mb-4">Simon Says</h1>
       <p class="lead mb-4">Sei pronto a testare la tua memoria?</p>
-      <button id="start-button" class="btn btn-success btn-lg">Start Game</button>
+      <button id="start-button" class="btn btn-success btn-lg px-5">Start Game</button>
     </div>
 
     <!-- Countdown -->
-    <div id="countdown" class="fs-1 fw-bolder"></div>
-    <p id="instructions" class="d-none">Memorizza i numeri entro il tempo limite!</p>
+    <div id="countdown" class="display-2 fw-bolder text-primary"></div>
+    <p id="instructions" class="d-none lead">Memorizza i numeri entro il tempo limite!</p>
 
     <!-- Numbers -->
-    <ul id="numbers-list" class="d-flex gap-5 list-unstyled"></ul>
+    <ul id="numbers-list" class="d-flex gap-4 list-unstyled display-4 fw-bold my-4"></ul>
 
     <!-- Form -->
-    <form id="answers-form" class="d-none">
-      <div class="d-flex gap-5" id="input-group">
-        <input type="number" class="form-control w-25">
-        <input type="number" class="form-control w-25">
-        <input type="number" class="form-control w-25">
-        <input type="number" class="form-control w-25">
-        <input type="number" class="form-control w-25">
+    <form id="answers-form" class="d-none d-flex flex-column align-items-center">
+      <div class="d-flex gap-3 mb-4" id="input-group">
+        <input type="number" class="form-control">
+        <input type="number" class="form-control">
+        <input type="number" class="form-control">
+        <input type="number" class="form-control">
+        <input type="number" class="form-control">
       </div>
-      <button class="btn btn-primary mt-2 d-block mx-auto">Conferma</button>
-      <button id="btn-restart" class="btn btn-outline-primary mt-3 d-none mx-auto d-block" type="button">Gioca ancora
-        🔄</button>
-      <p class="text-danger text-center" id="message"></p>
+
+      <button class="btn btn-primary btn-lg px-5">Conferma</button>
+
+      <button id="btn-restart" class="btn btn-outline-primary mt-3 d-none" type="button">
+        Gioca ancora 🔄
+      </button>
+
+      <p class="text-danger text-center mt-3 fs-5" id="message"></p>
     </form>
   </div>
 

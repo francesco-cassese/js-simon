@@ -1,17 +1,46 @@
-/* Generics */
+/*
+	========================================
+	CSS RESET
+	========================================
+*/
 
-/* # COUNTDOWN */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/*
+	========================================
+	ROOT & UTILITIES
+	========================================
+*/
+
+:root {
+	--color-countdown: #0d6efd;
+	--color-number: #212529;
+}
+
+/*
+	========================================
+	COUNTDOWN
+	========================================
+*/
 
 #countdown {
 	font-weight: bolder;
 	font-size: 5rem;
+	color: var(--color-countdown)
 }
 
-/* #NUMBERS */
+/*
+	========================================
+	LISTA NUMERI
+	========================================
+*/
+
 #numbers-list {
 	font-size: 3rem;
-}
-
-input {
-	width: 80px !important;
+	color: var(--color-number);
+	letter-spacing: 5px;
 }
