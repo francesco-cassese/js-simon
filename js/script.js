@@ -13,10 +13,11 @@ const istruzioni = document.querySelector('#instructions');          // Il testo
 const formRisposte = document.querySelector('#answers-form');        // Il contenitore dei campi di input
 const campiInput = document.querySelectorAll('#input-group input');  // Le 5 caselle da riempire
 const areaMessaggio = document.querySelector('#message');            // Il paragrafo per il verdetto finale
+const bottoneRiprova = document.querySelector('#btn-restart')
 
 
 /* --- VARIABILI DI CONFIGURAZIONE --- */
-const secondiIniziali = 5;                                      // Quanto tempo ha l'utente per memorizzare
+const secondiIniziali = 3;                                      // Quanto tempo ha l'utente per memorizzare
 const quantitaNumeri = 5;                                       // Quanti numeri deve generare il software
 let sequenzaCorretta = [];                                      // Dove salviamo i numeri da indovinare
 
@@ -100,4 +101,24 @@ formRisposte.addEventListener('submit', (event) => {
         areaMessaggio.className = "text-danger fw-bold mt-3 text-center";
         areaMessaggio.innerHTML = "Zero spaccato! 🧊 La tua memoria è come un colino... riprova!";
     }
+
+    bottoneRiprova.classList.remove('d-none');
 });
+
+/* --- CONFIGURAZIONE RESET --- */
+
+// Creo una costante che contiene la funzione di reset già "impacchettata" con i miei parametri
+const resetPersonalizzato = creaResetGioco(
+    campiInput,
+    areaMessaggio,
+    containerCountdown,
+    numeriDaIndovinare,
+    formRisposte,
+    paginaDiBenvenuto,
+    bottoneRiprova
+);
+
+/* --- LOGICA DI RESTART --- */
+
+// Lo collego al addEventListener del bottone
+bottoneRiprova.addEventListener('click', resetPersonalizzato);

@@ -149,3 +149,31 @@ const confrontaSequenze = () => {
 
     return numeriVincenti;                             // Restituisco la lista dei successi
 }
+
+// --- FUNZIONE GENERATRICE DI RESET ---
+
+const creaResetGioco = (inputs, msg, count, lista, form, benvenuto, btn) => {
+
+    // Questa è la funzione vera e propria che verrà eseguita al click
+    return function () {
+        // 1. Pulizia fisica
+        inputs.forEach(input => {
+            input.value = "";
+            input.classList.remove('is-invalid');
+        });
+
+        // 2. Reset testi
+        msg.innerHTML = "";
+        msg.className = "";
+        count.innerHTML = "Preparati...";
+        lista.innerHTML = "";
+
+        // 3. Visibilità
+        lista.classList.remove('d-none');
+        form.classList.add('d-none');
+        btn.classList.add('d-none');
+        benvenuto.classList.remove('d-none');
+
+        console.log("Reset generale eseguito con successo! 🔄");
+    };
+};
