@@ -17,8 +17,14 @@
 */
 
 :root {
+	--bg-wrapper: #f8f9fa;
 	--color-countdown: #0d6efd;
 	--color-number: #212529;
+	--border-input-FC: #198754;
+}
+
+.wrapper {
+	background-color: var(--bg-wrapper);
 }
 
 /*
@@ -43,4 +49,32 @@
 	font-size: 3rem;
 	color: var(--color-number);
 	letter-spacing: 5px;
+}
+
+/*
+	========================================
+	FORM INPUT
+	========================================
+*/
+
+input {
+	width: 80px !important;
+	aspect-ratio: 1;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	border-radius: 10px;
+	transition: all 0.2s ease;
+}
+
+input:focus {
+	transform: scale(1.05);
+	border-color: var(--border-input-FC);
+	box-shadow: 0 0 10px rgba(25, 135, 84, 0.2);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
