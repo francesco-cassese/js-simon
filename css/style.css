@@ -1,7 +1,6 @@
-/*
-	========================================
-	CSS RESET
-	========================================
+/* ========================================
+    CSS RESET 
+    ========================================
 */
 
 * {
@@ -10,71 +9,115 @@
 	box-sizing: border-box;
 }
 
-/*
-	========================================
-	ROOT & UTILITIES
-	========================================
+/* ========================================
+    ROOT & UTILITIES 
+    ========================================
 */
 
 :root {
-	--bg-wrapper: #f8f9fa;
-	--color-countdown: #0d6efd;
-	--color-number: #212529;
-	--border-input-FC: #198754;
+	--bg-wrapper: #f8fafc;
+	--color-countdown: #0284c7;
+	--color-number: #0f172a;
+
+	/* Focus State */
+	--border-input-focus: #0284c7;
+	--shadow-input-focus: rgba(2, 132, 199, 0.2);
+
+	/* Validation State */
+	--border-is-invalid: #e11d48;
+	--bg-is-invalid: #fff1f2;
+	--shadow-is-invalid: rgba(225, 29, 72, 0.1);
 }
 
 .wrapper {
 	background-color: var(--bg-wrapper);
+	color: #1e293b;
+	/* Testo grigio scuro */
 }
 
-/*
-	========================================
-	COUNTDOWN
-	========================================
+/* ========================================
+    COUNTDOWN 
+    ========================================
 */
 
 #countdown {
-	font-weight: bolder;
-	font-size: 5rem;
-	color: var(--color-countdown)
+	font-weight: 800;
+	font-size: 6rem;
+	color: var(--color-countdown) !important;
+	/* Ombra più delicata su sfondo chiaro */
+	text-shadow: 2px 2px 10px rgba(2, 132, 199, 0.1);
 }
 
-/*
-	========================================
-	LISTA NUMERI
-	========================================
+/* ========================================
+    LISTA NUMERI 
+    ========================================
 */
 
 #numbers-list {
-	font-size: 3rem;
+	font-size: 3.5rem;
 	color: var(--color-number);
-	letter-spacing: 5px;
+	letter-spacing: 15px;
+	list-style: none;
+	padding: 0;
+	font-weight: bold;
 }
 
-/*
-	========================================
-	FORM INPUT
-	========================================
+/* ========================================
+    FORM INPUT 
+    ========================================
 */
 
 input {
-	width: 80px !important;
+	width: 75px !important;
 	aspect-ratio: 1;
 	text-align: center;
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	font-weight: bold;
-	border-radius: 10px;
+	border-radius: 12px;
+	background-color: #ffffff !important;
+	color: #0f172a !important;
+	border: 2px solid #e2e8f0 !important;
 	transition: all 0.2s ease;
 }
 
 input:focus {
-	transform: scale(1.05);
-	border-color: var(--border-input-FC);
-	box-shadow: 0 0 10px rgba(25, 135, 84, 0.2);
+	transform: translateY(-5px);
+	border-color: var(--border-input-focus) !important;
+	box-shadow: 0 10px 20px var(--shadow-input-focus) !important;
+	outline: none !important;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
+}
+
+/* ========================================
+    VALIDAZIONE 
+    ========================================
+*/
+
+.is-invalid {
+	border: 2px solid var(--border-is-invalid) !important;
+	background-color: var(--bg-is-invalid) !important;
+	color: var(--border-is-invalid) !important;
+	animation: shake 0.4s ease-in-out;
+}
+
+.is-invalid:focus {
+	border-color: var(--border-is-invalid) !important;
+	box-shadow: 0 0 10px var(--shadow-is-invalid) !important;
+}
+
+/* ========================================
+    MESSAGGIO 
+    ========================================
+*/
+
+#message {
+	margin-top: 20px;
+	font-size: 1.2rem;
+	min-height: 1.5rem;
+	font-weight: 600;
 }
