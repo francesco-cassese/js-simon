@@ -13,7 +13,7 @@ const istruzioni = document.querySelector('#instructions');          // Il testo
 const formRisposte = document.querySelector('#answers-form');        // Il contenitore dei campi di input
 const campiInput = document.querySelectorAll('#input-group input');  // Le 5 caselle da riempire
 const areaMessaggio = document.querySelector('#message');            // Il paragrafo per il verdetto finale
-const bottoneRiprova = document.querySelector('#btn-restart')
+const bottoneRiprova = document.querySelector('#btn-restart')        // Bottone restart
 
 
 /* --- VARIABILI DI CONFIGURAZIONE --- */
