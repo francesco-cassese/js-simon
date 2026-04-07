@@ -6,17 +6,17 @@
 
 /* --- COLLEGAMENTI --- */
 const paginaDiBenvenuto = document.querySelector('#welcome-screen'); // Schermata con il tasto "Inizia"
-const bottoneInizio = document.querySelector('#start-button');   // Il bottone che fa partire il gioco
-const containerCountdown = document.querySelector('#countdown');      // Dove mostro il tempo che scorre
-const numeriDaIndovinare = document.querySelector('#numbers-list');    // L'area dove appaiono i numeri segreti
-const istruzioni = document.querySelector('#instructions');    // Il testo che guida l'utente
-const formRisposte = document.querySelector('#answers-form');    // Il contenitore dei campi di input
-const campiInput = document.querySelectorAll('#input-group input'); // Le 5 caselle da riempire
-const areaMessaggio = document.querySelector('#message');        // Il paragrafo per il verdetto finale
+const bottoneInizio = document.querySelector('#start-button');       // Il bottone che fa partire il gioco
+const containerCountdown = document.querySelector('#countdown');     // Dove mostro il tempo che scorre
+const numeriDaIndovinare = document.querySelector('#numbers-list');  // L'area dove appaiono i numeri segreti
+const istruzioni = document.querySelector('#instructions');          // Il testo che guida l'utente
+const formRisposte = document.querySelector('#answers-form');        // Il contenitore dei campi di input
+const campiInput = document.querySelectorAll('#input-group input');  // Le 5 caselle da riempire
+const areaMessaggio = document.querySelector('#message');            // Il paragrafo per il verdetto finale
 
 
 /* --- VARIABILI DI CONFIGURAZIONE --- */
-const secondiIniziali = 5;                                       // Quanto tempo ha l'utente per memorizzare
+const secondiIniziali = 5;                                      // Quanto tempo ha l'utente per memorizzare
 const quantitaNumeri = 5;                                       // Quanti numeri deve generare il software
 let sequenzaCorretta = [];                                      // Dove salviamo i numeri da indovinare
 
