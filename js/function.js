@@ -45,3 +45,49 @@ const generaSequenzaNumerica = (quantita) => {
 
     return numeriUnici;                                    // Ritorno l'array di numeri tutti diversi
 }
+
+/* --- FUNZIONE RECUPERO DATI INPUT --- */
+
+const estraiNumeriUtente = () => {
+
+    let numeriInseriti = [];                               // Array per memorizzare i valori estratti dagli input
+
+    // 1. Ciclo i campiInput (globali) per prelevare i dati
+    for (let i = 0; i < campiInput.length; i++) {
+
+        // Trasformo il valore testuale in numero intero
+        let valore = parseInt(campiInput[i].value);
+
+        // Pusho nell'array solo se il dato è un numero valido
+        if (!isNaN(valore)) {
+            numeriInseriti.push(valore);
+        }
+    }
+
+    return numeriInseriti;                                 // Ritorno l'array pulito al chiamante
+}
+
+
+/* --- FUNZIONE LOGICA DI CONFRONTO --- */
+
+const confrontaSequenze = () => {
+
+    let numeriVincenti = [];                               // Array per i numeri indovinati correttamente
+
+    // Richiamo la funzione di estrazione per avere i dati pronti
+    let datiUtente = estraiNumeriUtente();
+
+    // Confronto con la sequenza globale (senza considerare l'ordine)
+    for (let i = 0; i < datiUtente.length; i++) {
+
+        let numeroCorrente = datiUtente[i];                // Variabile di appoggio per il numero da controllare
+
+        // Controllo se presente nell'originale E Aggiungi questo numero all'elenco dei punti fatti SOLO SE non l'hai già inserito prima.
+        if (sequenzaCorretta.includes(numeroCorrente) && !numeriVincenti.includes(numeroCorrente)) {
+
+            numeriVincenti.push(numeroCorrente);           // Inserisco il numero nei risultati positivi
+        }
+    }
+
+    return numeriVincenti;                                 // Ritorno l'array dei successi per la stampa nel Main
+}
