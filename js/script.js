@@ -67,7 +67,7 @@ formRisposte.addEventListener('submit', (event) => {
     // CALCOLO RISULTATI: Chiedo alla funzione di confrontare i numeri inseriti con quelli segreti
     const indovinati = confrontaSequenze();
 
-    // --- CONTROLLO ERRORI CON ALERT DIVERTENTI ---
+    // --- CONTROLLO ERRORI ---
 
     if (risultato === -1) {
         alert("🚨 EHI! Hai lasciato delle caselle vuote. La mia memoria è d'acciaio, ma la tua pigrizia è leggendaria! Riampile tutte! ✍️");
