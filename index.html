@@ -17,9 +17,17 @@
 
 <body>
   <div class="d-flex vh-100 w-50 m-auto d-flex justify-content-center align-items-center flex-column">
+
+    <!-- Schermata iniziale -->
+    <div id="welcome-screen" class="text-center">
+      <h1 class="display-3 fw-bold mb-4">Simon Says</h1>
+      <p class="lead mb-4">Sei pronto a testare la tua memoria?</p>
+      <button id="start-button" class="btn btn-success btn-lg">Start Game</button>
+    </div>
+
     <!-- Countdown -->
     <div id="countdown" class="fs-1 fw-bolder"></div>
-    <p id="instructions">Memorizza i numeri entro il tempo limite!</p>
+    <p id="instructions" class="d-none">Memorizza i numeri entro il tempo limite!</p>
 
     <!-- Numbers -->
     <ul id="numbers-list" class="d-flex gap-5 list-unstyled"></ul>
@@ -39,8 +47,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/function.js"></script>
-  <script src="js/script.js"></script>
+  <script src="./js/function.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>
