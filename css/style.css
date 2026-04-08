@@ -128,7 +128,7 @@ body {
 #numbers-list {
 	font-size: 1.6rem;
 	color: var(--color-number);
-	letter-spacing: 15px;
+	letter-spacing: 5px;
 	list-style: none;
 	padding: 0;
 	font-weight: bold;
