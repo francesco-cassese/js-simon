@@ -126,7 +126,7 @@ body {
 */
 
 #numbers-list {
-	font-size: 3.5rem;
+	font-size: 1.6rem;
 	color: var(--color-number);
 	letter-spacing: 15px;
 	list-style: none;
@@ -141,17 +141,21 @@ body {
 
 input {
 
-	width: 50px !important;
-	font-size: 1.2rem;
-	border-radius: 8px;
-
+	width: 48px !important;
 	aspect-ratio: 1;
+	font-size: 1.1rem;
+	border-radius: 8px;
 	text-align: center;
 	font-weight: bold;
 	background-color: var(--bg-input) !important;
 	color: var(--color-number) !important;
 	border: 2px solid var(--border-light) !important;
 	transition: all 0.2s ease;
+}
+
+#input-group {
+	gap: 6px !important;
+	justify-content: center;
 }
 
 input:focus {
@@ -263,6 +267,11 @@ input::-webkit-inner-spin-button {
 
 /* Tablet e schermi medi (da 576px in su) */
 @media (min-width: 576px) {
+	#numbers-list {
+		font-size: 2.5rem;
+		gap: 15px !important;
+	}
+
 	input {
 		width: 65px !important;
 		font-size: 1.5rem;
@@ -276,6 +285,11 @@ input::-webkit-inner-spin-button {
 
 /* Desktop (da 992px in su) */
 @media (min-width: 992px) {
+	#numbers-list {
+		font-size: 3.5rem;
+		gap: 20px !important;
+	}
+
 	input {
 		width: 75px !important;
 		font-size: 1.8rem;
