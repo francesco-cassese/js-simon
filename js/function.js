@@ -38,7 +38,7 @@ const generaSequenzaNumerica = (quantita) => {
     let numeriUnici = [];                              // Il contenitore dove metteremo i numeri "buoni"
     let numeriTrovati = 0;                             // Contatore che mi dice a che punto siamo con la generazione
 
-    if (quantitaRichiesta > limiteMassimo || quantitaRichiesta <= 0) {
+    if (quantita > limiteMassimo || quantita <= 0) {
         return -1;
     }
 
