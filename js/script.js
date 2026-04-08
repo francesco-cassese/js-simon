@@ -55,6 +55,8 @@ bottoneInizio.addEventListener('click', () => {
             // Lascio un promemoria in console
             console.log("Sequenza corretta da indovinare:", sequenzaCorretta);
         }
+
+        return true;
     });
 });
 
@@ -113,7 +115,7 @@ formRisposte.addEventListener('submit', (event) => {
 
 /* --- CONFIGURAZIONE RESET --- */
 
-// Creo una costante che contiene la funzione di reset con i miei parametri
+// Creo una funzione che genera una funzione di reset con i miei parametri
 const resetPersonalizzato = creaResetGioco(
     campiInput,
     areaMessaggio,

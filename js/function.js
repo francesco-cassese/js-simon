@@ -18,12 +18,14 @@ const gestioneContoAllaRovescia = (secondi, comunicaStato) => {
         // Controllo se c'è ancora tempo e se l'interruttore è su ON
         if (tempoCorrente > 0 && timerAttivo) {
             tempoCorrente--;                           // Tolgo un secondo alla volta
-            return comunicaStato(1, tempoCorrente);    // Restituisco "1" (ATTIVO) e il tempo che resta
+            comunicaStato(1, tempoCorrente);
         } else {
             clearInterval(identificatoreTimer);        // Stoppo il timer per non consumare memoria inutilmente
             timerAttivo = false;                       // Metto l'interruttore su OFF per chiudere il flusso
-            return comunicaStato(0);                   // Restituisco "0" (FINITO) per far apparire gli input nel Main
+            comunicaStato(0)
         }
+
+
 
     }, 1000);                                          // Dico al computer di ripetere tutto ogni 1000ms (1 secondo)
 }
@@ -155,20 +157,21 @@ const confrontaSequenze = () => {
 const creaResetGioco = (inputs, msg, count, lista, form, benvenuto, btnRiprova, btnConfirm) => {
 
     // Questa è la funzione vera e propria che verrà eseguita al click
-    return function () {
-        // 1. Pulizia fisica
+    return function (event) {
+
+        // Pulizia fisica
         inputs.forEach(input => {
             input.value = "";
             input.classList.remove('is-invalid');
         });
 
-        // 2. Reset testi
+        // Reset testi
         msg.innerHTML = "";
         msg.className = "";
         count.innerHTML = "Preparati...";
         lista.innerHTML = "";
 
-        // 3. Visibilità
+        // Visibilità
         lista.classList.remove('d-none');
         form.classList.add('d-none');
         btnRiprova.classList.add('d-none');
