@@ -33,16 +33,17 @@ bottoneInizio.addEventListener('click', () => {
     // Se la funzione restituisce -1, fermo tutto prima del timer
     if (risultatoGenerazione === -1) {
         alert(` ERRORE: Impossibile generare ${quantitaNumeri} numeri unici nel range 1-50.`);
-        console.error("quantitaNumeri troppo alta.");
         return; // Esco dalla funzione e il gioco non parte
     }
+
+    // Assegno i numeri se hanno superato il primo controllo 
+    sequenzaCorretta = risultatoGenerazione;
 
     //CAMBIO SCHERMATA: Nascondo il benvenuto e mostro le istruzioni
     paginaDiBenvenuto.classList.add('d-none');
     istruzioni.classList.remove('d-none');
 
-    //GENERAZIONE DATI: Chiedo alle funzioni di creare 5 numeri e li salvo nella variabile globale
-    sequenzaCorretta = generaSequenzaNumerica(quantitaNumeri);
+    //GENERAZIONE DATI: 
     numeriDaIndovinare.innerHTML = `${sequenzaCorretta.join(' - ')}`; // Mostro i numeri a schermo separati da un trattino
 
     // PARTENZA TIMER: Avvio il conto alla rovescia passando il tempo e una funzione per gestire i due stati
