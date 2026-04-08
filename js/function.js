@@ -34,13 +34,18 @@ const gestioneContoAllaRovescia = (secondi, comunicaStato) => {
 
 const generaSequenzaNumerica = (quantita) => {
 
+    const limiteMassimo = 50;
     let numeriUnici = [];                              // Il contenitore dove metteremo i numeri "buoni"
     let numeriTrovati = 0;                             // Contatore che mi dice a che punto siamo con la generazione
+
+    if (quantitaRichiesta > limiteMassimo || quantitaRichiesta <= 0) {
+        return -1;
+    }
 
     // Ciclo finché il contenitore non è pieno del numero di cifre richiesto
     while (numeriTrovati < quantita) {
 
-        let numeroCasuale = Math.floor(Math.random() * 50) + 1; // Genero un numero casuale tra 1 e 50
+        let numeroCasuale = Math.floor(Math.random() * limiteMassimo) + 1; // Genero un numero casuale tra 1 e 50
 
         // Controllo se il numero appena uscito è già nel contenitore per evitare doppioni
         if (!numeriUnici.includes(numeroCasuale)) {
