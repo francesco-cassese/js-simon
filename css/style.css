@@ -115,9 +115,10 @@ body {
 
 #countdown {
 	font-weight: 800;
-	font-size: 4rem;
+	font-size: 1.8rem;
 	color: var(--color-countdown) !important;
 	text-shadow: 2px 2px 10px rgba(2, 132, 199, 0.1);
+	margin-bottom: 10px;
 }
 
 /* ========================================
