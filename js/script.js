@@ -16,6 +16,15 @@ const areaMessaggio = document.querySelector('#message');            // Il parag
 const bottoneRiprova = document.querySelector('#btn-restart')        // Bottone restart
 const bottoneConferma = document.querySelector('.btn-confirm');      // Bottone conferma
 
+/* --- Fix mobile --- */
+campiInput.forEach(input => {
+    input.addEventListener('input', () => {
+        if (input.classList.contains('is-invalid')) {
+            input.classList.remove('is-invalid');
+            areaMessaggio.innerHTML = "";
+        }
+    });
+});
 
 /* --- VARIABILI DI CONFIGURAZIONE --- */
 const secondiIniziali = 10;                                      // Quanto tempo ha l'utente per memorizzare
