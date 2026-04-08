@@ -40,10 +40,10 @@ bottoneInizio.addEventListener('click', () => {
 
         if (codice === 1) {
             // STATO ATTIVO: Mentre il tempo scorre, aggiorno il testo del countdown
-            containerCountdown.innerHTML = `Mancano: ${tempoRimanente}s`;
+            containerCountdown.innerHTML = `<i class="fa-solid fa-hourglass-half fa-spin-pulse me-2"></i> Mancano: ${tempoRimanente}s`;
         } else {
             // STATO SCADUTO: Il tempo è finito, nascondo i numeri e chiedo le risposte
-            containerCountdown.innerHTML = "INSERISCI I NUMERI!";
+            containerCountdown.innerHTML = `<i class="fa-solid fa-keyboard me-2"></i> INSERISCI I NUMERI!`;
 
             // PULIZIA SCHERMATA: Nascondo i numeri e le istruzioni (non deve più sbirciare!)
             numeriDaIndovinare.classList.add('d-none');
@@ -63,54 +63,57 @@ bottoneInizio.addEventListener('click', () => {
 
 formRisposte.addEventListener('submit', (event) => {
 
-    // BLOCO IL REFRESH: Evito che la pagina si ricarichi
+    // BLOCO IL REFRESH
     event.preventDefault();
 
-    // Tolgo il rosso (is-invalid) da tutti i campi prima di fare il nuovo controllo
+    // Reset stati grafici
     campiInput.forEach(input => input.classList.remove('is-invalid'));
     areaMessaggio.innerHTML = "";
 
-    // CALCOLO RISULTATI: Chiedo alla logica di confrontare i numeri (mi darà un array o un errore < 0)
+    // Calcolo risultati
     const indovinati = confrontaSequenze();
 
-    // --- GESTIONE ERRORI ---
-
+    // 1. GESTIONE ERRORI DI VALIDAZIONE
     if (indovinati < 0) {
+        areaMessaggio.className = "text-warning fw-bold mt-3";
 
-        // Messaggio specifico in base al codice errore ricevuto
-        if (indovinati === -1) alert("🚨 Caselle vuote! Riampile tutte. ✍️");
-        if (indovinati === -2) alert("🧐 Numeri fuori range (1-50)! 👽");
-        if (indovinati === -3) alert("👯 Doppioni! Ogni numero deve essere unico. 🃏");
+        if (indovinati === -1) {
+            areaMessaggio.innerHTML = `<i class="fa-solid fa-pen-clip me-2"></i> Caselle vuote! Riempile tutte.`;
+        } else if (indovinati === -2) {
+            areaMessaggio.innerHTML = `<i class="fa-solid fa-circle-exclamation me-2"></i> Numeri fuori range (1-50)!`;
+        } else if (indovinati === -3) {
+            areaMessaggio.innerHTML = `<i class="fa-solid fa-clone me-2"></i> Doppioni! Ogni numero deve essere unico.`;
+        }
 
-        // Chiamo la funzione che si occupa di ri-leggere i campi e colorarli
         evidenziaCampiErrati(indovinati, campiInput);
-        return;
+        return; // Esce solo se c'è un errore
     }
 
-    // --- SE TUTTO È OK MOSTRO IL RISULTATO E DISABILITO BOTTONE ---
-
+    // 2. SE TUTTO È OK: DISABILITO BOTTONE E MOSTRO ESITO
     bottoneConferma.disabled = true;
 
     if (indovinati.length > 0) {
-        // CASO VITTORIA: Coloro il testo di verde e mostro i numeri presi
+        // CASO VITTORIA
         areaMessaggio.className = "text-success fw-bold mt-3 text-center";
-        areaMessaggio.innerHTML = `BOOM! Hai indovinato ${indovinati.length} numero/i: [ ${indovinati.join(' - ')} ] 🏆`;
+        areaMessaggio.innerHTML = `<i class="fa-solid fa-trophy fa-bounce me-2"></i> BOOM! Hai indovinato ${indovinati.length} numero/i: [ ${indovinati.join(' - ')} ]`;
 
         if (indovinati.length === quantitaNumeri) {
             alert("🤯 PAZZESCO! Li hai presi tutti! Sei un fenomeno!");
         }
     } else {
-        // CASO SCONFITTA: Coloro il testo di rosso
+        // CASO SCONFITTA
         areaMessaggio.className = "text-danger fw-bold mt-3 text-center";
-        areaMessaggio.innerHTML = "Zero spaccato! 🧊 La tua memoria è come un colino... riprova!";
+        areaMessaggio.innerHTML = `<i class="fa-solid fa-ghost me-2"></i> Zero spaccato! La tua memoria è come un colino...`;
     }
 
+    // Mostro il tasto per ricominciare
     bottoneRiprova.classList.remove('d-none');
+
 });
 
 /* --- CONFIGURAZIONE RESET --- */
 
-// Creo una costante che contiene la funzione di reset già "impacchettata" con i miei parametri
+// Creo una costante che contiene la funzione di reset con i miei parametri
 const resetPersonalizzato = creaResetGioco(
     campiInput,
     areaMessaggio,

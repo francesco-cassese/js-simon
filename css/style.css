@@ -26,6 +26,7 @@
 	--bg-icon-box: #f0f9ff;
 	--border-light: #e2e8f0;
 	--border-icon-box: #0284c71a;
+	--bg-input: #fff;
 
 	/* Focus State */
 	--border-input-focus: #0284c7;
@@ -68,10 +69,12 @@ body {
 	background: var(--bg-icon-box);
 	width: 100px;
 	aspect-ratio: 1;
-	line-height: 100px;
 	border-radius: 50%;
 	margin: 0 auto;
 	border: 2px solid var(--border-icon-box);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .icon-box i {
@@ -143,9 +146,9 @@ input {
 	font-size: 1.8rem;
 	font-weight: bold;
 	border-radius: 12px;
-	background-color: #ffffff !important;
-	color: #0f172a !important;
-	border: 2px solid #e2e8f0 !important;
+	background-color: var(--bg-input) !important;
+	color: var(--color-number) !important;
+	border: 2px solid var(--border-light) !important;
 	transition: all 0.2s ease;
 }
 
@@ -235,8 +238,11 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-confirm:disabled {
+	background-color: var(--color-btn-disabled) !important;
+	color: var(--text-btn-disabled) !important;
 	cursor: not-allowed;
-	opacity: 0.6;
+	transform: none !important;
+	box-shadow: none !important;
 }
 
 /* ========================================
