@@ -300,4 +300,8 @@ input::-webkit-inner-spin-button {
 	#input-group {
 		gap: 15px !important;
 	}
+
+	#countdown {
+		font-size: 4rem !important;
+	}
 }
