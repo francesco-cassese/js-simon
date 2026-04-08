@@ -18,7 +18,7 @@ const bottoneConferma = document.querySelector('.btn-confirm');      // Bottone 
 
 
 /* --- VARIABILI DI CONFIGURAZIONE --- */
-const secondiIniziali = 3;                                      // Quanto tempo ha l'utente per memorizzare
+const secondiIniziali = 10;                                      // Quanto tempo ha l'utente per memorizzare
 const quantitaNumeri = 5;                                       // Quanti numeri deve generare il software
 let sequenzaCorretta = [];                                      // Dove salviamo i numeri da indovinare
 
